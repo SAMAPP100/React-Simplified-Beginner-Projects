@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 export default function TodoForm({
   onAddTodo,
@@ -6,8 +6,15 @@ export default function TodoForm({
   onAddTodo: (text: string) => void;
 }) {
   const [text, setText] = useState("");
+
+const submit = (e: FormEvent)=>{
+  e.preventDefault()
+  onAddTodo(text)
+  return setText('');
+}
+
   return (
-    <div id="new-todo-form">
+    <form onSubmit={submit} id="new-todo-form">
       <label htmlFor="todo-input">New Todo</label>
       <input
         value={text}
@@ -15,7 +22,7 @@ export default function TodoForm({
         type="text"
         id="todo-input"
       />
-      <button onClick={() => {onAddTodo(text); setText('')}}>Add Todo</button>
-    </div>
+      <button >Add Todo</button>
+    </form>
   );
 }
