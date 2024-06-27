@@ -10,11 +10,16 @@ function App() {
   const addTodo = (text: string) => {
     const newTodo: Ttodo = { id: crypto.randomUUID(), text };
     setTodos((oldTodos) => [...oldTodos, newTodo]);
+    
   };
+
+  const removeTodo = (todoid:string)=>{
+    setTodos(currentTodos => currentTodos.filter(t => t.id !== todoid))
+  }
 
   return (
     <>
-      <TodoList todos={todos} />
+      <TodoList todos={todos} onRemoveTodo={removeTodo} />
       <TodoForm onAddTodo={addTodo} />
     </>
   );

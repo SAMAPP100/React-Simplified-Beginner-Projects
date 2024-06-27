@@ -15,7 +15,7 @@ export default function TodoForm({
         type="text"
         id="todo-input"
       />
-      <button onClick={() => onAddTodo(text)}>Add Todo</button>
+      <button onClick={() => {onAddTodo(text); setText('')}}>Add Todo</button>
     </div>
   );
 }
